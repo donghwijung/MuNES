@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package>
+  <name>munes</name>
+  <version>0.0.0</version>
+
+  <description>
+  This is an implentation of MuNES which indicates multifloor navigation including elevators and stairs.
+  Donghwi Jung, Chan Kim, Jae-Kyung Cho, and Seong-Woo Kim, "MuNES: Multifloor Navigation Including Elevators and Stairs," submitted to IEEE International Conference on Robotics and Automation (ICRA), 2023 
+  </description>
+
+  <maintainer email="donghwijung@snu.ac.kr">Donghwi Jung</maintainer>
+
+  <license>MIT</license>
+
+  <author email="donghwijung@snu.ac.kr">Donghwi Jung</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>  
+  <build_depend>rosbag</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>image_transport</build_depend>
+  
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>image_transport</run_depend>
+
+  <export>
+  </export>
+</package>
