@@ -45,4 +45,4 @@ The code in this repository is based on [A-LOAM](https://github.com/HKUST-Aerial
 ## Citation
 This code is for the paper below:
 
-Donghwi Jung, Jae-Kyung Cho, Younghwa Jung, Soohyun Shin, Seong-Woo Kim, Autonomous Robot Intelligence Lab, Seoul National University.
+Donghwi Jung, Chan Kim, Jae-Kyung Cho, and Seong-Woo Kim, “MuNES: Multi-Floor Navigation including Elevators and Stairs,” submitted to IEEE International Conference on Robotics and Automation (ICRA), 2023
