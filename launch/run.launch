@@ -32,7 +32,7 @@
     <param name="lidar_type" type="string" value="VLP16"/> 
     
     <!-- utils -->
-    <param name="save_directory" type="string" value="/home/donghwijung/munes_ws/src/MuNES/"/>
+    <param name="save_directory" type="string" value="$(find munes)"/>
     
     <!-- nodes -->
     <node pkg="munes" type="ascanRegistration" name="ascanRegistration" output="screen" />
