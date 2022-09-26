@@ -16,6 +16,8 @@ VOXEL_SIZE = [2, 2, 0.5]
 
 OCCUPIED_CRITERIA = 10
 
+EXTRACTION_NUM = 5
+
 GOAL_POINTS = [[18, 3, 0], [15, 4, 0]]
 
 if __name__ == "__main__":
@@ -104,7 +106,7 @@ if __name__ == "__main__":
             else:
                 points_count_dict[new_key] = 1
         if len(points_count_dict.keys()) > 0:
-            for i in range(5):
+            for i in range(EXTRACTION_NUM):
                 if len(points_count_dict.keys()) > i + 1:
                     x, y = list(points_count_dict.keys())[list(points_count_dict.values()).index(sorted(list(points_count_dict.values()), reverse=True)[i])].split(" ")
                     marked_points.append([int(x), int(y), k])
@@ -114,6 +116,17 @@ if __name__ == "__main__":
 
     start_point = np.array(GOAL_POINTS[0])
     end_point = np.array(GOAL_POINTS[-1])
+
+    for checked_point in roads:
+        if most_common_z_values.min() <= checked_point[2] and checked_point[2] <= most_common_z_values.max():
+            if [checked_point[0], checked_point[1]] in m_c_list or checked_point[2] in most_common_z_values:
+                continue
+            elif utils.check_in_2d_array(checked_point, np.array(marked_points)):
+                continue
+            else:
+                voxels[checked_point[0], checked_point[1], checked_point[2]] = 0
+        else:
+            voxels[checked_point[0], checked_point[1], checked_point[2]] = 0
 
     mutf_map = np.transpose((voxels > 0).nonzero())
 
@@ -163,10 +176,6 @@ if __name__ == "__main__":
                 colors[checked_point[0], checked_point[1], checked_point[2]] = "#EBECF0" ## elevators and stairs
             elif utils.check_in_2d_array(checked_point, np.array(marked_points)):
                 colors[checked_point[0], checked_point[1], checked_point[2]] = "#EBECF0" ## floors of corridors
-            else:
-                voxels[checked_point[0], checked_point[1], checked_point[2]] = 0
-        else:
-            voxels[checked_point[0], checked_point[1], checked_point[2]] = 0
 
     ax = plt.figure().add_subplot(projection='3d')
     ax.grid(False)
