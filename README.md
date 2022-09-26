@@ -5,7 +5,7 @@ Video [[youtube]](https://youtu.be/9saqN6IrsLM)
 
 ## Mapping
 ### Prerequisite
-* Our code depend on ROS, Ceres, GTSAM. Before you install MuNES, please install those prerequisites. 
+* Our code depends on ROS, Ceres, GTSAM, thus please install those prerequisites before installing MuNES. 
 ### Execute
 ```
 mkdir -p ~/munes_ws/src
@@ -19,7 +19,7 @@ rosbag play data_1.bag
 ```
 ## Trajectory Planning
 ### Prerequisite
-* To proceed the trajectory planning, a pcd file containing ground points from the multi-floor map.
+* To proceed the trajectory planning, a pcd file containing ground points of the multi-floor map is necessary.
 
 * The ground map can be obtained from the mapping process.
 
@@ -41,7 +41,8 @@ cd planning
 python munes_wo_map.py
 ```
 ## Acknowledgement
-The codes in this repository is based on [A-LOAM](https://github.com/HKUST-Aerial-Robotics/A-LOAM), [SC-A-LOAM](https://github.com/gisbi-kim/SC-A-LOAM), and [PathPlanning](https://github.com/zhm-real/PathPlanning). Thanks to the authors of those codes.
+The code in this repository is based on [A-LOAM](https://github.com/HKUST-Aerial-Robotics/A-LOAM), [SC-A-LOAM](https://github.com/gisbi-kim/SC-A-LOAM), and [PathPlanning](https://github.com/zhm-real/PathPlanning). Thanks to the authors of those codes.
 ## Citation
 This code is for the paper below:
+
 Donghwi Jung, Jae-Kyung Cho, Younghwa Jung, Soohyun Shin, Seong-Woo Kim, Autonomous Robot Intelligence Lab, Seoul National University.
