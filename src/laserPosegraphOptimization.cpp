@@ -908,6 +908,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& scan){
 void saveAsFiles(int sig)
 {
     std::string pcdDirectoryPath = save_directory + "/pcd/";
+    system((std::string("mkdir -p ") + pcdDirectoryPath).c_str());
 
     pcl::io::savePCDFile<PointType>(pcdDirectoryPath + "munes.pcd", *laserCloudMapPGO);
 
