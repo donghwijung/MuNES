@@ -18,7 +18,7 @@ OCCUPIED_CRITERIA = 10
 
 EXTRACTION_NUM = 5
 
-GOAL_POINTS = [[18, 3, 0], [15, 4, 0]]
+GOAL_POINTS = [[0, 0, 0], [0, 0, 0]]
 
 if __name__ == "__main__":
     pcd = o3d.io.read_point_cloud(os.path.join(DIRECTORY_PATH, FILE_NAME))
@@ -94,6 +94,19 @@ if __name__ == "__main__":
             m_c_list.append(k_split)
 
 
+    points_total_count_dict = {}
+    for k,v in points_dict.items():
+        for p in v:
+            if [p[0], p[1]] in m_c_list or p[2] in most_common_z_values:
+                continue
+            new_key = str(p[0]) + " " + str(p[1])
+            if new_key in points_total_count_dict:
+                points_total_count_dict[new_key] += 1
+            else:
+                points_total_count_dict[new_key] = 1
+
+    elv_xy = np.array(list(map(int, max(points_total_count_dict, key=points_total_count_dict.get).split(" "))))
+
     marked_points = []
     for k, v in points_dict.items():
         points_count_dict = {}
@@ -106,16 +119,21 @@ if __name__ == "__main__":
             else:
                 points_count_dict[new_key] = 1
         if len(points_count_dict.keys()) > 0:
-            for i in range(EXTRACTION_NUM):
-                if len(points_count_dict.keys()) > i + 1:
-                    x, y = list(points_count_dict.keys())[list(points_count_dict.values()).index(sorted(list(points_count_dict.values()), reverse=True)[i])].split(" ")
-                    marked_points.append([int(x), int(y), k])
+            i = 0
+            added_num = 0
+            while True:
+                if len(points_count_dict.keys()) > i + 1 and added_num < EXTRACTION_NUM:
+                    x, y = list(map(int, list(points_count_dict.keys())[list(points_count_dict.values()).index(sorted(list(points_count_dict.values()), reverse=True)[i])].split(" ")))
+                    if x != elv_xy[0] or y != elv_xy[1]:
+                        marked_points.append([x, y, k])
+                        added_num += 1
+                    i += 1
+                else:
+                    break
+    marked_points = np.array(marked_points)
 
-    GOAL_POINTS[0][2] = most_common_z_values[1]
-    GOAL_POINTS[1][2] = most_common_z_values[0]
-
-    start_point = np.array(GOAL_POINTS[0])
-    end_point = np.array(GOAL_POINTS[-1])
+    for z in range(most_common_z_values.min(), most_common_z_values.max() + 1):
+        marked_points = np.vstack((marked_points, np.array([elv_xy[0], elv_xy[1], z])))
 
     for checked_point in roads:
         if most_common_z_values.min() <= checked_point[2] and checked_point[2] <= most_common_z_values.max():
@@ -129,6 +147,18 @@ if __name__ == "__main__":
             voxels[checked_point[0], checked_point[1], checked_point[2]] = 0
 
     mutf_map = np.transpose((voxels > 0).nonzero())
+
+    # GOAL_POINTS[0][0] = np.median(roads[roads[:,2]==most_common_z_values[1]][:,0])
+    GOAL_POINTS[0][0] = np.quantile(roads[roads[:,2]==most_common_z_values[1]][:,0], 0.6, interpolation="lower")
+    GOAL_POINTS[0][1] = np.median(roads[roads[:,2]==most_common_z_values[1]][:,1])
+    GOAL_POINTS[0][2] = most_common_z_values[1]
+    # GOAL_POINTS[1][0] = np.median(roads[roads[:,2]==most_common_z_values[0]][:,0])
+    GOAL_POINTS[1][0] = np.quantile(roads[roads[:,2]==most_common_z_values[0]][:,0], 0.6, interpolation="lower")
+    GOAL_POINTS[1][1] = np.median(roads[roads[:,2]==most_common_z_values[0]][:,1])
+    GOAL_POINTS[1][2] = most_common_z_values[0]
+
+    start_point = np.array(GOAL_POINTS[0], dtype=int)
+    end_point = np.array(GOAL_POINTS[-1], dtype=int)
 
     sta = time.time()
     total_paths = []

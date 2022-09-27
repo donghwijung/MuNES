@@ -164,6 +164,8 @@ double close_points_percentage;
 
 double averageSqrdDistanceThres;
 double elevatorSize;
+double groundChannelThres;
+double floorTransitionThres;
 
 std::string padZeros(int val, int num_digits = 6) {
   std::ostringstream out;
@@ -266,7 +268,7 @@ void pressureCallback(const sensor_msgs::FluidPressureConstPtr &msg)
                 pressPoseMap[pressureVecSize] = currentKeyframePoseIndex;
                 pressAltMap[pressureVecSize] = curr_alt;
             }
-            currentFloor = int(curr_alt / floorTransitionCriteria);
+            currentFloor = int(curr_alt / floorTransitionThres);
         }
         pressIter++;
         mBuf.unlock();
@@ -920,7 +922,7 @@ void saveAsFiles(int sig)
     double minIntensity = std::pow(10,10);
     for(int i=0; i<laserCloudMapPGO->points.size(); i++){
         pcl::PointXYZI point = laserCloudMapPGO->points.at(i);
-        if(point.intensity <= 3.0) {
+        if(point.intensity <= groundChannelThres) {
             groundCloud->points.push_back(point);
             groundCloudCount++;
         }
@@ -957,6 +959,8 @@ int main(int argc, char **argv)
     nh.param<bool>("use_floor_label", useFloorLabel, true);
     nh.param<double>("avg_sqrd_dist_thres", averageSqrdDistanceThres, 2.5);
     nh.param<double>("elevator_size", elevatorSize, 0.1);
+    nh.param<double>("ground_channel_thres", groundChannelThres, 3.0);
+    nh.param<double>("floor_trans_thres", floorTransitionThres, 3.0);
 
     ISAM2Params parameters;
     parameters.relinearizeThreshold = 0.01;

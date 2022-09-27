@@ -1,7 +1,5 @@
 #pragma once
 
-const float floorTransitionCriteria = 3.0;
-
 struct Pose7D {
   double p_x;
   double p_y;

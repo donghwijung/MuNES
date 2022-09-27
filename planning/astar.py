@@ -11,7 +11,11 @@ class Weighted_A_star(object):
                         (1, 1, 0): np.sqrt(2), (0, 1, 1): np.sqrt(2), \
                         (-1, -1, 0): np.sqrt(2), (0, -1, -1): np.sqrt(2), \
                         (1, -1, 0): np.sqrt(2), (-1, 1, 0): np.sqrt(2),\
-                        (0, 1, -1): np.sqrt(2), (0, -1, 1): np.sqrt(2)}
+                        (0, 1, -1): np.sqrt(2), (0, -1, 1): np.sqrt(2),\
+                        (1, 1, 1): np.sqrt(3), (1, -1, 1): np.sqrt(2),\
+                        (-1, 1, 1): np.sqrt(3), (-1, -1, 1): np.sqrt(2),\
+                        (1, 1, -1): np.sqrt(3), (1, -1, -1): np.sqrt(3),\
+                        (-1, 1, -1): np.sqrt(3), (-1, -1, -1): np.sqrt(3)}
         self.settings = 'CollisionChecking' # 'NonCollisionChecking' or 'CollisionChecking'                
         self.start, self.goal = tuple(s_start), tuple(s_goal)
         self.g = {self.start:0,self.goal:np.inf}

@@ -23,10 +23,12 @@
     <!-- <param name="sc_max_radius" type="double" value="80.0"/> for outdoor -->
 
     <!-- MuNES -->
-    <param name="use_pressure" type="bool" value="true"/>
-    <param name="use_floor_label" type="bool" value="true"/>
-    <param name="avg_sqrd_dist_thres" type="double" value="3.0"/>
-    <param name="elevator_size" type="double" value="0.1"/>
+    <param name="use_pressure" type="bool" value="true"/> <!-- choose whether to use barometric data -->
+    <param name="use_floor_label" type="bool" value="true"/> <!-- choose whether to use floor based loop detection -->
+    <param name="avg_sqrd_dist_thres" type="double" value="3.0"/> <!-- a distance threshold used to decide whether inside the elevator -->
+    <param name="elevator_size" type="double" value="0.1"/> <!-- a size of elevator map on xy plane accumulated along z axis -->
+    <param name="ground_channel_thres" type="double" value="3.0"/> <!-- an intensity threshold for dividing ground points and others -->
+    <param name="floor_trans_thres" type="double" value="3.0"/> <!-- an elevation threshold used to detect the change of floor. unit (m) -->
 
     <!--  -->
     <param name="lidar_type" type="string" value="VLP16"/> 
