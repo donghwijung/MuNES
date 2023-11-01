@@ -1,7 +1,7 @@
 # MuNES: Multifloor Navigation Including Elevators and Stairs
 Video [[youtube]](https://youtu.be/9saqN6IrsLM)
 ## Download datasets
-[Data 1](https://bit.ly/munes_data_1) (moving between two floors; stairs and an elevator)
+[Data 1](https://mysnu-my.sharepoint.com/:u:/g/personal/donghwijung_seoul_ac_kr/EaACWm8E9uRLv-scGSS4PxUBhdUgzb0sfgV6d7IKrM6SKg?e=tlCCdz) (moving between two floors; stairs and an elevator)
 
 ## Mapping
 ### Prerequisite
