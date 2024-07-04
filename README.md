@@ -1,7 +1,7 @@
 # MuNES: Multifloor Navigation Including Elevators and Stairs
 Video [[link]](https://youtu.be/9saqN6IrsLM) Paper [[link]](https://arxiv.org/pdf/2402.04535.pdf)
 ## Download datasets
-[Data 1](https://mysnu-my.sharepoint.com/:u:/g/personal/donghwijung_seoul_ac_kr/EaACWm8E9uRLv-scGSS4PxUBhdUgzb0sfgV6d7IKrM6SKg?e=A0EWhl) (moving between two floors; stairs and an elevator)
+[Data 1](https://drive.google.com/file/d/1JjlpboA4jLQ_zZ9ZlFMIztbMBB06pi_e/view?usp=sharing) (moving between two floors; stairs and an elevator)
 
 ## Mapping
 ### Prerequisite
@@ -23,7 +23,7 @@ rosbag play data_1.bag
 
 * The ground map can be obtained from the mapping process.
 
-* If you want to skip the mapping process, you can download [pcd file](https://bit.ly/munes_ground_map_link) and move the downloaded file to the directory */pcd* in this repository.
+* If you want to skip the mapping process, you can download [pcd file](https://drive.google.com/file/d/18p8bml-YUwIO0mOSxeF5tmFIfyendbED/view?usp=sharing) and move the downloaded file to the directory */pcd* in this repository.
 ### Setup
 * We tested MuNES with *python 3.8*.
 ```
